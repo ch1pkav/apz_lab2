@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  hazelcast-member1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hazelcast-member1
+    networks:
+      hazelcast-network:
+        ipv4_address: 172.28.0.2
+    ports:
+      - "5701:5701"
+
+  hazelcast-member2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hazelcast-member2
+    networks:
+      hazelcast-network:
+        ipv4_address: 172.28.0.3
+    ports:
+      - "5702:5701"
+
+  hazelcast-member3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hazelcast-member3
+    networks:
+      hazelcast-network:
+        ipv4_address: 172.28.0.4
+    ports:
+      - "5703:5701"
+
+networks:
+  hazelcast-network:
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
